@@ -194,14 +194,8 @@
                     <tr>
                       <td>
                         <div class="rf-download-row">
-                          <div id="DowloadBox">
-                            <a href="?downloadclient"><img
-                                style="width: 45px; height: 45px; border: 0px; margin-right: 10px;"
-                                src="{{ template_path }}/images/account/download_windows.gif"></a>
-                            <br>
-                            <a href="?downloadclient">Download</a>
-                          </div>
-                          <span>Click <a href="?downloadclient">here</a> to download the latest {{ config['lua']['serverName'] }} client!</span>
+                          <span>Baixe a versão mais recente do cliente {{ config['lua']['serverName'] }}.</span>
+                          <a class="rf-client-download-button" href="?downloadclient">BAIXAR CLIENTE</a>
                         </div>
                       </td>
                     </tr>
@@ -755,7 +749,7 @@
               <td>
                 <div class="TableContent">
                   <div class="TableContentContainer">
-                    <table class="TableContent" width="100%">
+                    <table class="TableContent rf-account-logs" width="100%">
                       <tr class="LabelH">
                         <td style="width:60%">Action</td>
                         <td style="width:30%">Date</td>
