@@ -265,8 +265,8 @@ function getTotalPlayersOnline()
         }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911-fix5">
-    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911-fix5"></script>
+    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911-fix6">
+    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911-fix6"></script>
     <?= template_place_holder('head_end'); ?>
 </head>
 <body onBeforeUnLoad="SaveMenu();" onUnload="SaveMenu();" style="background-image:url(<?= $template_path ?><?= getImageMenuRandom('bgs') ?>);
@@ -336,6 +336,12 @@ function getTotalPlayersOnline()
   <div class="rf-masthead-copy"><span>SEU PRÓXIMO CAPÍTULO COMEÇA AQUI</span><p>Um mundo de aventuras. Uma história sua.</p></div>
   <a class="rf-button" href="<?= getLink('downloadclient') ?>">Jogar agora <span aria-hidden="true">↗</span></a>
 </header>
+<div class="rf-mobilebar">
+  <button type="button" aria-label="Abrir menu" onclick="document.body.classList.toggle('rf-mobile-menu-open')">☰</button>
+  <a class="rf-mobile-logo" href="<?= getLink('news') ?>"><img src="<?= $template_path ?>/images/header/renfall-logo.png" alt="Renfall"></a>
+  <a href="<?= getLink('serverinfo') ?>" aria-label="Informações do servidor">⚔</a>
+  <a href="<?= getLink('account/manage') ?>" aria-label="Minha conta">♙</a>
+</div>
 <nav class="rf-topnav" aria-label="Acesso rápido">
   <a href="<?= getLink('news') ?>">Notícias</a><a href="<?= getLink('account/manage') ?>"><?= $logged ? 'Minha conta' : 'Entrar' ?></a>
   <a href="<?= getLink('currentcharactertrades') ?>">Bazaar de personagens</a><a href="<?= getLink('highscores') ?>">Ranking</a>

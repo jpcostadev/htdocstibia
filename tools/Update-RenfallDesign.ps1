@@ -37,6 +37,9 @@ $plan | Select-Object Relative,Existed | ConvertTo-Json | Set-Content -LiteralPa
 try {
  foreach ($item in $plan) { New-Item -ItemType Directory -Force -Path (Split-Path $item.Target) | Out-Null; Copy-Item -LiteralPath $item.Source -Destination $item.Target -Force }
  foreach ($item in $plan) { if ((Get-FileHash -LiteralPath $item.Source).Hash -ne (Get-FileHash -LiteralPath $item.Target).Hash) { throw "Falha na copia: $($item.Relative)" } }
+ $twigCache = [IO.Path]::GetFullPath((Join-Path $targetRoot 'system\cache\twig'))
+ if (!$twigCache.StartsWith($targetRoot+'\',[StringComparison]::OrdinalIgnoreCase)) { throw 'Cache Twig fora do site.' }
+ if (Test-Path -LiteralPath $twigCache) { Get-ChildItem -LiteralPath $twigCache -Force | Remove-Item -Recurse -Force }
 } catch {
  foreach ($item in $plan) {
   if ($item.Existed) { Copy-Item -LiteralPath (Join-Path $backupRoot $item.Relative) -Destination $item.Target -Force }
