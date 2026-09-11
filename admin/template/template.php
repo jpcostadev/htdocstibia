@@ -19,7 +19,9 @@ defined('MYAAC') or die('Direct access not allowed!'); ?>
     <link rel="stylesheet" href="<?= BASE_URL; ?>tools/css/AdminLTE.min.css">
     <link rel="stylesheet" href="<?= BASE_URL; ?>tools/css/skins/skin-blue.min.css">
 
+    <link rel="stylesheet" href="<?= BASE_URL; ?>tools/css/fontawesome.min.css">
     <link rel="stylesheet" href="<?= BASE_URL; ?>tools/fonts/fontawesome/all.css">
+    <script src="<?= BASE_URL; ?>tools/fonts/fontawesome/all.js"></script>
 
     <link rel="stylesheet" href="<?= BASE_URL; ?>tools/css/ionicons.min.css">
     <link rel="stylesheet" href="<?= BASE_URL; ?>tools/css/jquery.dataTables.min.css">
@@ -149,10 +151,6 @@ defined('MYAAC') or die('Direct access not allowed!'); ?>
         <section class="content-header">
             <h1><?= ($title ?? ''); ?>
                 <small>Painel administrativo</small>
-                <div class="float-end">
-                    <span
-                        class="badge bg-<?= ((($status[1]['online'] ?? false)) ? 'success' : 'danger'); ?>"><?= $config['lua']['serverName'] ?></span>
-                </div>
             </h1>
         </section>
         <section class="content">
@@ -163,15 +161,6 @@ defined('MYAAC') or die('Direct access not allowed!'); ?>
 
     <footer class="main-footer">
 
-        <div class="hidden-xs float-end">
-            <div id="status">
-                <?php if (($status[1]['online'] ?? false)): ?>
-                    <p class="badge bg-success">Servidor online</p>
-                <?php else: ?>
-                    <p class="badge bg-danger">Servidor offline</p>
-                <?php endif; ?>
-            </div>
-        </div>
         <?= base64_decode('UG93ZXJlZCBieSA8YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vanByemltYmEvY3J5c3RhbHNlcnZlci1teWFjYyIgdGFyZ2V0PSJfYmxhbmsiPkNyeXN0YWwgU2VydmVyPC9hPiBhbmQgQ29udHJpYnV0b3JzLg==') ?>
     </footer>
 
