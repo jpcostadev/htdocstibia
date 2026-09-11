@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-10 col-12">
+  <div class="col-12">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">Maintenance</h3>
+        <h3 class="box-title">Manutenção do site</h3>
         <div class="box-tools float-end">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
           </button>
@@ -12,30 +12,30 @@
         <form action="?p=dashboard&maintenance" method="post" class="form-horizontal">
           <div class="box-body">
             <div class="form-group">
-              <label for="status" class="col-sm-2 control-label">Website:</label>
+              <label for="status" class="control-label">Status do site</label>
               <div class="col-sm-12">
                 <select class="form-control form-select" id="status" name="status">
-                  <option value="0"{% if not is_closed %} selected{% endif %}>Open</option>
-                  <option value="1"{% if is_closed %} selected{% endif %}>Closed</option>
+                  <option value="0"{% if not is_closed %} selected{% endif %}>Aberto</option>
+                  <option value="1"{% if is_closed %} selected{% endif %}>Fechado para manutenção</option>
                 </select>
               </div>
             </div>
             <div class="form-group">
-              <label for="message" class="col-sm-2 control-label">Message:<br>
-                <small>(only if closed)</small>
+              <label for="message" class="control-label">Mensagem de manutenção<br>
+                <small>Exibida somente quando o site estiver fechado</small>
               </label>
               <div class="col-sm-12">
                 <textarea name="message" cols="40" class="form-control" rows="5" maxlength="255"
-                          placeholder="Enter ...">{{ closed_message }}</textarea>
+                          id="message" placeholder="Informe o motivo da manutenção">{{ closed_message }}</textarea>
               </div>
             </div>
           </div>
           <div class="box-footer">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clearcacheModal"><i
-                class="fa-solid fa-trash-can"></i> Clear Cache
+                class="fa-solid fa-trash-can"></i> Limpar cache
             </button>
             <div class="float-end">
-              <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-check"></i> Update</button>
+              <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-check"></i> Salvar alterações</button>
             </div>
           </div>
         </form>
@@ -46,17 +46,17 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="clearcacheModalLabel">Clear Cache</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title" id="clearcacheModalLabel">Limpar cache</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
         <div class="modal-body">
-          Are you sure?
+          Tem certeza de que deseja limpar o cache do site?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-circle-x"></i>
-            Close
+            Cancelar
           </button>
-          <a href="?p=dashboard&clear_cache"><span class="btn btn-success"><i class="fa-solid fa-circle-check"></i> Confirm</span></a>
+          <a href="?p=dashboard&clear_cache" class="btn btn-success"><i class="fa-solid fa-circle-check"></i> Confirmar</a>
         </div>
       </div>
     </div>

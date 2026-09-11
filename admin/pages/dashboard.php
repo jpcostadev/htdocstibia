@@ -5,18 +5,16 @@ global $db, $twig, $twig_loader, $status;
  *
  * @package   MyAAC
  * @author    Slawkens <slawkens@gmail.com>
- * @author    OpenTibiaBR
  * @copyright 2023 MyAAC
- * @link      https://github.com/opentibiabr/myaac
  */
 defined('MYAAC') or die('Direct access not allowed!');
-$title = 'Dashboard';
+$title = 'Visão geral';
 
 if (isset($_GET['clear_cache'])) {
     if (clearCache()) {
-        success('Cache cleared.');
+        success('Cache limpo com sucesso.');
     } else {
-        error('Error while clearing cache.');
+        error('Não foi possível limpar o cache.');
     }
 }
 
@@ -24,9 +22,9 @@ if (isset($_GET['maintenance'])) {
     $_status = (int)$_POST['status'];
     $message = $_POST['message'];
     if (empty($message)) {
-        error('Message cannot be empty.');
+        error('A mensagem de manutenção não pode ficar vazia.');
     } else if (strlen($message) > 255) {
-        error('Message is too long. Maximum length allowed is 255 chars.');
+        error('A mensagem pode ter no máximo 255 caracteres.');
     } else {
         $tmp = '';
         if (fetchDatabaseConfig('site_closed', $tmp))
@@ -42,16 +40,18 @@ if (isset($_GET['maintenance'])) {
 }
 $is_closed = getDatabaseConfig('site_closed') == '1';
 
-$closed_message = 'Server is under maintenance, please visit later.';
+$closed_message = 'O site está em manutenção. Tente novamente mais tarde.';
 $tmp = '';
 if (fetchDatabaseConfig('site_closed_message', $tmp))
     $closed_message = $tmp;
 
-$total_accounts = $db->query('SELECT `id` FROM `accounts`;')->rowCount();
-$total_players = $db->query('SELECT `id` FROM `players`;')->rowCount();
-$total_guilds = $db->query('SELECT `id` FROM `guilds`;')->rowCount();
-$total_houses = $db->query('SELECT `id` FROM `houses`;')->rowCount();
-$total_donates = $db->hasTable('pagseguro_transactions') ? $db->query("SELECT `id` FROM `pagseguro_transactions` WHERE `payment_status` <> 'CANCELLED'")->rowCount() : null;
+$total_accounts = (int)$db->query('SELECT COUNT(*) FROM `accounts`')->fetchColumn();
+$total_players = (int)$db->query('SELECT COUNT(*) FROM `players`')->fetchColumn();
+$total_guilds = (int)$db->query('SELECT COUNT(*) FROM `guilds`')->fetchColumn();
+$total_houses = (int)$db->query('SELECT COUNT(*) FROM `houses`')->fetchColumn();
+$total_donates = $db->hasTable('pagseguro_transactions')
+    ? (int)$db->query("SELECT COUNT(*) FROM `pagseguro_transactions` WHERE `payment_status` <> 'CANCELLED'")->fetchColumn()
+    : null;
 
 $twig->display('admin.statistics.html.twig', array(
     'total_accounts' => $total_accounts,

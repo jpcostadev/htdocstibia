@@ -2,7 +2,7 @@
 global $config;
 defined('MYAAC') or die('Direct access not allowed!'); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <?php
     echo template_header(true);
@@ -19,32 +19,25 @@ defined('MYAAC') or die('Direct access not allowed!'); ?>
     <link rel="stylesheet" href="<?= BASE_URL; ?>tools/css/AdminLTE.min.css">
     <link rel="stylesheet" href="<?= BASE_URL; ?>tools/css/skins/skin-blue.min.css">
 
-    <link rel="stylesheet" href="<?= BASE_URL; ?>tools/css/fontawesome.min.css">
     <link rel="stylesheet" href="<?= BASE_URL; ?>tools/fonts/fontawesome/all.css">
-    <script src="<?= BASE_URL; ?>tools/fonts/fontawesome/all.js"></script>
 
     <link rel="stylesheet" href="<?= BASE_URL; ?>tools/css/ionicons.min.css">
     <link rel="stylesheet" href="<?= BASE_URL; ?>tools/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="<?= $template_path; ?>style.css"/>
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" type="text/css" href="<?= $template_path; ?>renfall-admin.css?v=1"/>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <?php if ($logged && admin()) { ?>
     <header class="main-header">
         <a href="." class="logo">
-            <span class="logo-mini"><b>M</b>A</span>
-            <span class="logo-lg"><b>My</b>AAC</span>
+            <span class="logo-mini"><b>R</b>F</span>
+            <span class="logo-lg"><b>RENFALL</b></span>
         </a>
 
         <nav class="navbar navbar-static-top" role="navigation">
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">Abrir ou fechar menu</span>
             </a>
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
@@ -58,7 +51,7 @@ defined('MYAAC') or die('Direct access not allowed!'); ?>
     <aside class="main-sidebar">
         <section class="sidebar">
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">MyAAC v<?= MYAAC_VERSION ?></li>
+                <li class="header">PAINEL RENFALL <span>v<?= MYAAC_VERSION ?></span></li>
 
                 <?php
                 $icons_a = array(
@@ -70,29 +63,33 @@ defined('MYAAC') or die('Direct access not allowed!'); ?>
                 );
 
                 $menus = array(
-                    'Dashboard' => 'dashboard',
-                    'News' => 'news',
-                    'Mailer' => 'mailer',
-                    'Pages' => 'pages',
-                    'Modifiers' => 'modifiers',
+                    'Renfall' => array(
+                        'Add Account Coins' => 'add_account_coins',
+                        'Add Player Coins' => 'add_player_coins',
+                    ),
+                    'Visão geral' => 'dashboard',
+                    'Notícias' => 'news',
+                    'Mensagens' => 'mailer',
+                    'Páginas' => 'pages',
+                    'Configurações' => 'modifiers',
                     'Menus' => 'menus',
                     'Plugins' => 'plugins',
-                    'Visitors' => 'visitors',
+                    'Visitantes' => 'visitors',
                     'Editor' => array(
-                        'Accounts' => 'accounts',
-                        'Players' => 'players',
+                        'Contas' => 'accounts',
+                        'Jogadores' => 'players',
                     ),
-                    'Items' => 'items',
-                    'Tools' => array(
-                        'Donates' => 'pag_transactions',
-                        'Premium/VIP Updater' => 'premiumvipupdater',
-                        'Notepad' => 'notepad',
+                    'Itens' => 'items',
+                    'Ferramentas' => array(
+                        'Doações' => 'pag_transactions',
+                        'Atualizar Premium/VIP' => 'premiumvipupdater',
+                        'Bloco de notas' => 'notepad',
                         'phpinfo' => 'phpinfo',
                         //'Premium/VIP Fixer' => 'fixvippremiumnewsystem', //Unused function (used to fix new vip/premium) system
                     ),
                     'Logs' => array(
                         'Logs' => 'logs',
-                        'Reports' => 'reports',
+                        'Relatórios' => 'reports',
                     ),
                 );
 
@@ -142,7 +139,7 @@ defined('MYAAC') or die('Direct access not allowed!'); ?>
                 }
                 ?>
                 <li class="bg-danger">
-                    <a href="?action=logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a>
+                    <a href="?action=logout"><i class="fa fa-sign-out"></i> <span>Sair</span></a>
                 </li>
             </ul>
         </section>
@@ -151,10 +148,10 @@ defined('MYAAC') or die('Direct access not allowed!'); ?>
     <div class="content-wrapper">
         <section class="content-header">
             <h1><?= ($title ?? ''); ?>
-                <small> - Admin Panel</small>
+                <small>Painel administrativo</small>
                 <div class="float-end">
                     <span
-                        class="badge bg-<?= (($status['online']) ? 'success' : 'danger'); ?>"><?= $config['lua']['serverName'] ?></span>
+                        class="badge bg-<?= ((($status[1]['online'] ?? false)) ? 'success' : 'danger'); ?>"><?= $config['lua']['serverName'] ?></span>
                 </div>
             </h1>
         </section>
@@ -168,28 +165,27 @@ defined('MYAAC') or die('Direct access not allowed!'); ?>
 
         <div class="hidden-xs float-end">
             <div id="status">
-                <?php if ($status['online']): ?>
-                    <p class="badge bg-success" style="width: 120px; text-align: center;">Server Online</p>
+                <?php if (($status[1]['online'] ?? false)): ?>
+                    <p class="badge bg-success">Servidor online</p>
                 <?php else: ?>
-                    <p class="badge bg-danger" style="width: 120px; text-align: center;">Server Offline</p>
+                    <p class="badge bg-danger">Servidor offline</p>
                 <?php endif; ?>
             </div>
         </div>
-        <?= base64_decode('UG93ZXJlZCBieSA8YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vb3BlbnRpYmlhYnIvbXlhYWMiIHRhcmdldD0iX2JsYW5rIj5PcGVuVGliaWFCUjwvYT4gYW5kIENvbnRyaWJ1dG9ycy4=') ?>
+        <?= base64_decode('UG93ZXJlZCBieSA8YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vanByemltYmEvY3J5c3RhbHNlcnZlci1teWFjYyIgdGFyZ2V0PSJfYmxhbmsiPkNyeXN0YWwgU2VydmVyPC9hPiBhbmQgQ29udHJpYnV0b3JzLg==') ?>
     </footer>
 
     <aside class="control-sidebar control-sidebar-dark">
         <div class="tab-content">
             <div class="tab-pane active" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Account</h3>
+                <h3 class="control-sidebar-heading">Conta</h3>
                 <ul class="control-sidebar-menu">
                     <li>
                         <a href="?action=logout">
                             <i class="menu-icon fa fa-sign-out bg-red"></i>
                             <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Log out</h4>
-                                <p>This will log you out of
-                                    account <?= (USE_ACCOUNT_NAME ? $account_logged->getName() : $account_logged->getId()); ?></p>
+                                <h4 class="control-sidebar-subheading">Sair</h4>
+                                <p>Encerrar a sessão de <?= (USE_ACCOUNT_NAME ? $account_logged->getName() : $account_logged->getId()); ?></p>
                             </div>
                         </a>
                     </li>
@@ -201,21 +197,21 @@ defined('MYAAC') or die('Direct access not allowed!'); ?>
                         <a href="<?= BASE_URL; ?>" target="_blank">
                             <i class="menu-icon fa fa-eye bg-blue"></i>
                             <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Preview</h4>
-                                <p>This will open a new tab</p>
+                                <h4 class="control-sidebar-subheading">Abrir site</h4>
+                                <p>Visualizar em uma nova aba</p>
                             </div>
                         </a>
                     </li>
                 </ul>
 
-                <h3 class="control-sidebar-heading">Version</h3>
+                <h3 class="control-sidebar-heading">Versão</h3>
                 <ul class="control-sidebar-menu">
                     <li>
                         <a href="?p=version">
                             <i class="menu-icon fa fa-info bg-warning"></i>
                             <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Check Version</h4>
-                                <p><?= MYAAC_VERSION ?> (check for updates)</p>
+                                <h4 class="control-sidebar-subheading">Verificar versão</h4>
+                                <p>MyAAC <?= MYAAC_VERSION ?></p>
                             </div>
                         </a>
                     </li>
