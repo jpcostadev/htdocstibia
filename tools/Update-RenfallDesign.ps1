@@ -43,7 +43,11 @@ foreach ($file in $files) {
  $plan += [pscustomobject]@{Source=$src;Target=$dst;Relative=$file;Existed=(Test-Path -LiteralPath $dst)}
 }
 if ($CheckOnly) { Write-Host 'Verificacao concluida. Nenhum arquivo alterado.' -ForegroundColor Green; return }
-$backupRoot = Join-Path (Split-Path $targetRoot -Parent) ('renfall-design-backup-'+(Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
+$projectRoot = [IO.Path]::GetFullPath((Split-Path $targetRoot -Parent)).TrimEnd('\')
+$backupBase = [IO.Path]::GetFullPath((Join-Path $projectRoot '.renfall-backups')).TrimEnd('\')
+if (!$backupBase.StartsWith($projectRoot+'\',[StringComparison]::OrdinalIgnoreCase)) { throw 'Pasta de backups fora do projeto.' }
+New-Item -ItemType Directory -Force -Path $backupBase | Out-Null
+$backupRoot = Join-Path $backupBase (Get-Date -Format 'yyyyMMdd-HHmmss-fff')
 New-Item -ItemType Directory -Path $backupRoot | Out-Null
 foreach ($item in $plan) {
  if ($item.Existed) { $backup=Join-Path $backupRoot $item.Relative; New-Item -ItemType Directory -Force -Path (Split-Path $backup) | Out-Null; Copy-Item -LiteralPath $item.Target -Destination $backup }
@@ -61,6 +65,16 @@ try {
   elseif (Test-Path -LiteralPath $item.Target) { Remove-Item -LiteralPath $item.Target -Force }
  }
  throw
+}
+
+# Mantem tres backups recentes e remove as pastas antigas espalhadas na raiz.
+Get-ChildItem -LiteralPath $backupBase -Directory | Sort-Object LastWriteTime -Descending | Select-Object -Skip 3 | ForEach-Object {
+ if (!$_.FullName.StartsWith($backupBase+'\',[StringComparison]::OrdinalIgnoreCase)) { throw 'Backup fora da pasta permitida.' }
+ Remove-Item -LiteralPath $_.FullName -Recurse -Force
+}
+Get-ChildItem -LiteralPath $projectRoot -Directory -Filter 'renfall-design-backup-*' | ForEach-Object {
+ if (!$_.FullName.StartsWith($projectRoot+'\renfall-design-backup-',[StringComparison]::OrdinalIgnoreCase)) { throw 'Backup legado fora da pasta permitida.' }
+ Remove-Item -LiteralPath $_.FullName -Recurse -Force
 }
 Write-Host "Renfall atualizado. Backup: $backupRoot" -ForegroundColor Green
 Write-Host 'Abra https://renfall.online/admin/ e pressione Ctrl+F5. Nao precisa reiniciar o jogo.'
