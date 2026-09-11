@@ -10,6 +10,8 @@ if (!(Test-Path -LiteralPath (Join-Path $targetRoot 'system\libs\crystal_bazaar.
 if (!(Test-Path -LiteralPath $Php)) { throw "PHP nao encontrado em $Php. Informe -Php com o caminho correto." }
 $files = @(
  'system/templates/serverinfo.html.twig',
+ 'system/pages/serverinfo.php',
+ 'system/functions.php',
  'templates/tibiacom/boxes/discord.php', 'templates/tibiacom/boxes/renfallboosted.php', 'templates/tibiacom/boxes/renfallguides.php', 'templates/tibiacom/account.management.html.twig',
  'templates/tibiacom/index.php', 'templates/tibiacom/renfall.css', 'templates/tibiacom/renfall.js',
  'templates/tibiacom/boxes/donate.php', 'templates/tibiacom/config.ini', 'templates/tibiacom/images/header/renfall-logo.png',

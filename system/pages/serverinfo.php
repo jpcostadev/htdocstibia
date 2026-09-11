@@ -50,7 +50,6 @@ $twig->display('serverinfo.html.twig', [
     'serverSaveTime' => $serverSaveTime->format('Y, n-1, j, G, i, s'),
     'rateUseStages' => $rateUseStages = getBoolean(configLua('rateUseStages')),
     'rateStages' => $rateUseStages && isset($config['lua']['rateStages']) ? $config['lua']['rateStages'] : [],
-    'serverIp' => str_replace(['http://', 'https://', '/'], '', configLua('url')),
     'clientVersion' => $status['clientVersion'] ?? null,
     'protectionLevel' => configLua('protectionLevel'),
     'houseRent' => $rent == 'never' ? 'disabled' : $rent,

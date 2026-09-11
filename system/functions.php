@@ -1653,7 +1653,7 @@ function loadStagesData($configFile)
         $result[$lastKey][] = [
           'minlevel' => $minlevel ? (int) str_replace([' ', ','], '', $minlevel) : null,
           'maxlevel' => $maxlevel ? (int) str_replace([' ', ','], '', $maxlevel) : null,
-          'multiplier' => $multiplier ? (int) str_replace([' ', ','], '', $multiplier) : null,
+          'multiplier' => $multiplier ? (float) str_replace([' ', ','], '', $multiplier) : null,
         ];
       }
     }
