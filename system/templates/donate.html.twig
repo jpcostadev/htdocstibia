@@ -26,7 +26,7 @@
   </tbody>
 </table>
 <br/>
-<form target="pagseguro" method="post" action="{{ getLink('pagsegurodonate') }}">
+<form method="post" action="{{ getLink('pagsegurodonate') }}">
   <input type="hidden" name="reference" value="{{ account_logged.getId() }}">
   <table border="0" cellpadding="4" cellspacing="1" width="100%">
     <tbody>
@@ -50,12 +50,10 @@
     </tr>
     <tr bgcolor="{{ config.darkborder }}">
       <td colspan="2">
-        <input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/carrinhoproprio/btnFinalizar.jpg"
-               name="submit" {% if is_localhost and not config.enablePagseguroLocal %}disabled{% endif %}/>
+        <button type="submit" style="padding:10px 22px;font-weight:bold;cursor:pointer">Pagar com Pix ou Cartão — InfinitePay</button>
       </td>
     </tr>
     </tbody>
   </table>
 </form>
-<b><span style="color:#ff0000;">OBS:</span></b> Coins are delivered <b>automatically</b> after
-<u>approved</u> of your payment by PagSeguro.
+<b><span style="color:#ff0000;">OBS:</span></b> As coins são entregues <b>automaticamente</b> após a confirmação do pagamento pela InfinitePay.
