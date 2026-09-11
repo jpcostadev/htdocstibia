@@ -2295,3 +2295,26 @@ img {
   cursor: pointer;
   cursor: hand;
 }
+
+/* Renfall identity */
+#LeftArtwork #TibiaLogoArtworkTop {
+  top: -21px;
+  left: -38px;
+  width: 250px;
+  height: 167px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, .8));
+}
+
+#ThemeboxesColumn .Themebox:first-child,
+#ThemeboxesColumn .renfall-shop {
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, .55));
+}
+
+@media (max-width: 1050px) {
+  #LeftArtwork #TibiaLogoArtworkTop {
+    left: -26px;
+    width: 225px;
+    height: 153px;
+  }
+}
