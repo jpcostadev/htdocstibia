@@ -8,6 +8,13 @@ $sourceRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..')).TrimEnd('\'
 $targetRoot = (Resolve-Path -LiteralPath $WebRoot).Path.TrimEnd('\')
 if (!(Test-Path -LiteralPath (Join-Path $targetRoot 'system\libs\crystal_bazaar.php'))) { throw 'Este pacote exige o bazaar Crystal instalado. Nenhum arquivo alterado.' }
 if (!(Test-Path -LiteralPath $Php)) { throw "PHP nao encontrado em $Php. Informe -Php com o caminho correto." }
+
+# Clones de atualizacao antigos usam sparse checkout e ainda nao incluem o painel admin.
+if (!(Test-Path -LiteralPath (Join-Path $sourceRoot 'admin\template\template.php')) -and
+    (Test-Path -LiteralPath (Join-Path $sourceRoot '.git'))) {
+ & git -C $sourceRoot sparse-checkout add admin
+ if ($LASTEXITCODE -ne 0) { throw 'Nao foi possivel adicionar a pasta admin ao sparse checkout.' }
+}
 $files = @(
  'system/templates/serverinfo.html.twig',
  'system/pages/serverinfo.php',
