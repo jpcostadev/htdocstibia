@@ -1,3 +1,4 @@
+<article class="rf-news-article">
 <div class="NewsHeadline">
 	<div class="NewsHeadlineBackground" style="background-image:url({{ template_path }}/images/news/newsheadline_background.gif)">
 		<img src="{{ template_path }}/images/news/icon_{{ icon }}.gif" class="NewsHeadlineIcon" />
@@ -8,6 +9,11 @@
 		{% endif %}
 	</div>
 </div>
+<div class="rf-news-body">{{ content|raw }}</div>
+{% if admin_options is defined and admin_options is not empty %}<div class="rf-news-admin">{{ admin_options|raw }}</div>{% endif %}
+{% if comments is not null %}<div class="rf-news-comments"><a href="{{ comments }}">Comentar esta notícia</a></div>{% endif %}
+</article>
+{#
 <table style="clear:both" border=0 cellpadding=0 cellspacing=0 width="100%" >
 	<tr>
 		<td style="padding-left:10px;padding-right:10px;" >{{ content|raw }}</td>
@@ -21,3 +27,4 @@
 	{% endif %}
 </table>
 <br/>
+#}

@@ -25,9 +25,7 @@ $(document).ready(function(){
  * @package   MyAAC
  * @author    Gesior <jerzyskalski@wp.pl>
  * @author    Slawkens <slawkens@gmail.com>
- * @author    OpenTibiaBR
  * @copyright 2023 MyAAC
- * @link      https://github.com/opentibiabr/myaac
  */
 defined('MYAAC') or die('Direct access not allowed!');
 
@@ -228,7 +226,8 @@ if(!$news_cached)
 			$twig->display('news.html.twig', array(
 				'id' => $news['id'],
 				'title' => stripslashes($news['title']),
-				'content' => $content_ . $admin_options,
+				'content' => $content_,
+				'admin_options' => $admin_options,
 				'date' => $news['date'],
 				'icon' => $categories[$news['category']]['icon_id'],
 				'author' => $config['news_author'] ? $author : '',

@@ -18,6 +18,7 @@ if (!(Test-Path -LiteralPath (Join-Path $sourceRoot 'admin\template\template.php
 $files = @(
  'index.php',
  'system/templates/serverinfo.html.twig',
+ 'system/pages/news.php', 'system/templates/news.html.twig',
  'system/pages/serverinfo.php',
  'system/pages/vip.php', 'system/templates/vip.html.twig',
  'admin/template/template.php', 'admin/template/style.css', 'admin/template/renfall-admin.css',
