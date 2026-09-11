@@ -157,7 +157,7 @@
 
 <br>
 
-<div class="TableContainer">
+<div class="TableContainer rf-download-panel">
   <div class="CaptionContainer">
     <div class="CaptionInnerContainer">
       <span class="CaptionEdgeLeftTop"
@@ -193,15 +193,15 @@
                     <tbody>
                     <tr>
                       <td>
-                        <div style="height: 55px;">
-                          <div id="DowloadBox" style="position: relative; float:right;">
+                        <div class="rf-download-row">
+                          <div id="DowloadBox">
                             <a href="?downloadclient"><img
                                 style="width: 45px; height: 45px; border: 0px; margin-right: 10px;"
                                 src="{{ template_path }}/images/account/download_windows.gif"></a>
                             <br>
-                            <a style="position: absolute; bottom: -5px; right: 0px;" href="?downloadclient">Download</a>
+                            <a href="?downloadclient">Download</a>
                           </div>
-                          <span style="position: relative; top: 18px;">Click <a href="?downloadclient">here</a> to download the latest {{ config['lua']['serverName'] }} client!</span>
+                          <span>Click <a href="?downloadclient">here</a> to download the latest {{ config['lua']['serverName'] }} client!</span>
                         </div>
                       </td>
                     </tr>
@@ -222,7 +222,7 @@
 <br>
 
 {% if recovery_key is empty %}
-  <div class="SmallBox">
+  <div class="SmallBox rf-register-hint">
     <div class="MessageContainer">
       <div class="BoxFrameHorizontal"
            style="background-image:url({{ template_path }}/images/content/box-frame-horizontal.gif);"></div>
@@ -235,7 +235,7 @@
              style="background-image:url({{ template_path }}/images/content/box-frame-vertical.gif);"></div>
         <div class="BoxFrameVerticalRight"
              style="background-image:url({{ template_path }}/images/content/box-frame-vertical.gif);"></div>
-        <table>
+        <table class="rf-register-table">
           <tr>
             <td class="LabelV">Your account is not registered!</td>
             <td>
@@ -301,7 +301,7 @@
             <tr>
               <td>
                 <div class="TableContentContainer">
-                  <table class="TableContent" width="100%" style="border:1px solid #faf0d7;">
+                  <table class="TableContent rf-character-table" width="100%" style="border:1px solid #faf0d7;">
                     <tbody>
                     <tr>
                       <td style="text-align: center; font-weight: bold;">Regular Characters</td>
@@ -378,11 +378,9 @@
                           {% endif %}
                         </td>
                         <td align="center">
-                          <span id="CharacterOptionsOf_0">
-                            <span style="font-weight:normal;">{% if not player.isDeleted() %}[<a
-                                href="{{ getLink('account/character/comment/' ~ player.getName|urlencode) }}">Edit</a>]{% endif %}</span>
-                            <br>
-                            <span style="font-weight:normal;">[<a href="{{ getLink('account/character/delete') }}">Delete</a>]</span>
+                          <span id="CharacterOptionsOf_0" class="rf-character-actions">
+                            {% if not player.isDeleted() %}<a href="{{ getLink('account/character/comment/' ~ player.getName|urlencode) }}">Editar</a>{% endif %}
+                            <a href="{{ getLink('account/character/delete') }}">Excluir</a>
                           </span>
                         </td>
                       </tr>
