@@ -1,5 +1,2 @@
 <?php defined('MYAAC') or die('Direct access not allowed!'); ?>
-<section class="rf-shop" aria-label="Renfall Webshop">
-<h2>RENFALL WEBSHOP</h2><img src="<?= $template_path ?>/images/themeboxes/donate/donate.png" alt="Renfall Coins" width="180" height="96">
-<p>Sua próxima conquista.<br>Coins via Pix ou cartão.</p><a class="rf-button" href="<?= getLink('donate') ?>">COMPRAR COINS ↗</a>
-</section>
+<section class="rf-panel rf-shop" aria-label="Renfall Webshop"><h2>✦ WEBSHOP ✦</h2><div class="rf-shop-art"><p>O próximo nível<br>da sua aventura</p><a class="rf-button" href="<?= getLink('donate') ?>">COMPRAR RENFALL COINS</a></div></section>

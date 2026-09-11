@@ -27,3 +27,35 @@ body{background-color:#321311!important;background-image:linear-gradient(180deg,
 #Menu .SubmenuitemLabel{box-sizing:border-box;left:0!important;padding:0 10px;white-space:normal}
 #Menu .Submenuitem{min-height:28px;line-height:20px}
 #Themeboxes [class$='_content'],#Themeboxes [class$='_content'] small{color:#43251c!important}
+/* Ornamental Renfall panels: red enamel, bevelled gold and parchment. */
+#ContentRow{grid-template-columns:190px minmax(0,1fr) 220px;gap:22px}
+#Themeboxes,#ThemeboxesColumn{width:100%;display:block}
+#Themeboxes .rf-panel{position:relative;box-sizing:border-box;width:100%;margin:0 0 22px;padding:4px;border:1px solid #f1cf88;border-radius:10px 2px 10px 2px;background:linear-gradient(135deg,#e6bd71,#705025 24%,#d7b677 48%,#644222 75%,#f3d492);box-shadow:0 5px 14px #0008,inset 0 0 0 2px #4a2719;overflow:visible}
+#Themeboxes .rf-panel:before,#Themeboxes .rf-panel:after{content:'◆';position:absolute;color:#eed199;text-shadow:0 1px #3b170e;font-size:17px;z-index:2;pointer-events:none}
+#Themeboxes .rf-panel:before{left:-5px;top:28px}#Themeboxes .rf-panel:after{right:-5px;bottom:1px}
+#Themeboxes .rf-panel h2{box-sizing:border-box;margin:0;padding:9px 5px;font:700 16px/20px Georgia,serif;letter-spacing:1px;text-align:center;color:#ffe7af;border:1px solid #d2aa61;background:linear-gradient(#8b362b,#521c19 65%,#32120f);text-shadow:0 2px 2px #190604;box-shadow:inset 0 1px #d9a464,inset 0 -2px #2d100c;border-radius:5px 0 0 0}
+.rf-panel-body{padding:18px 12px 12px;background:radial-gradient(ellipse at top,#f5e4c6,#d9bd91);border:1px solid #8a612f;border-top:0;color:#4e3425;text-align:center;box-shadow:inset 0 0 12px #97704655}
+.rf-panel-body p{margin:12px 0 15px;font:12px/1.6 Arial,sans-serif}
+.rf-panel-button{display:block;padding:11px 5px;border:1px solid #ffdb8f;border-radius:3px;background:linear-gradient(#d8ae60,#a77930);box-shadow:0 2px 4px #50301866,inset 0 1px #ffedbb;color:#fff8dc!important;font:700 12px Arial,sans-serif;text-decoration:none!important;text-shadow:0 1px 2px #543309}
+.rf-panel-button:hover,.rf-shop-art .rf-button:hover{filter:brightness(1.15)}
+.rf-emblem{width:66px;height:66px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;margin:0 auto;border-radius:50%;border:3px solid #edd498;box-shadow:0 0 0 3px #b5966866,0 0 22px #e5bb61,inset 0 1px 3px #fff8;color:white;font-size:32px;background:linear-gradient(#e0b95e,#ab762a)}
+.rf-discord-icon{background:linear-gradient(#8c83ff,#5546d5);box-shadow:0 0 0 3px #b5966866,0 0 22px #887bdf}.rf-discord-button{background:linear-gradient(#8a7afa,#5041c2);border-color:#c4baff;text-shadow:0 1px #37236b}
+.rf-library-links{display:flex;justify-content:center;gap:10px;margin-top:12px;font-size:12px}.rf-library-links a{color:#693b24}
+#Themeboxes .rf-boosted-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 10px}
+.rf-portrait{position:relative;width:74px;height:74px;display:flex;align-items:center;justify-content:center;margin:auto auto 8px;border:1px solid #916932;background:linear-gradient(#e7d5b5,#c7a473);box-shadow:inset 0 0 0 3px #f1dec1,0 2px 4px #79532b44}.rf-portrait img{object-fit:contain;image-rendering:pixelated;max-width:64px}
+.rf-boosted-entry strong{display:block;font:700 10px Arial;letter-spacing:1px;color:#613628}.rf-boosted-entry span{display:block;font:12px/1.4 Arial;margin-top:5px;overflow-wrap:anywhere}
+#Themeboxes .rf-shop h2{background:linear-gradient(#b47a23,#79430f);color:#fff0bd}
+.rf-shop-art{min-height:164px;padding:17px 10px 12px;box-sizing:border-box;background:linear-gradient(#1b080733,#1b0807cc),url('images/themeboxes/donate/donate.png') center/cover;border:1px solid #795426;border-top:0;display:flex;flex-direction:column;justify-content:end}
+#Themeboxes .rf-shop-art p{font:italic 700 20px/1.25 Georgia;color:#fff0ba;text-shadow:0 2px 3px black;margin:6px 0 19px}
+#Themeboxes .rf-shop-art .rf-button{display:block;margin:0;padding:13px 4px;border:2px solid #ffe098;font:700 12px Arial;background:linear-gradient(#ffc442,#d98409);color:#fff!important;text-shadow:0 1px 2px #773806;box-shadow:0 3px 5px #14070488,inset 0 1px #fff0bd}
+#Themeboxes>div:not(.rf-panel){width:100%}#Themeboxes [class$='_header'],#Themeboxes [class$='_content']{width:100%!important;box-sizing:border-box}
+#ContentColumn .SmallBox .Message,#ContentColumn .SmallBox .ErrorMessage{height:auto!important;min-height:0!important;box-sizing:border-box}
+#ContentColumn .SmallBox{height:auto;min-width:0}#ContentColumn .SmallBox table{width:100%!important;min-width:0!important;height:auto!important;table-layout:auto}
+#ContentColumn .BoxContent{overflow-x:visible}#ContentColumn .BoxContent table{max-width:100%;box-sizing:border-box}#ContentColumn .TableContainer{box-sizing:border-box;max-width:100%}
+#ContentColumn .BoxContent .TableContentContainer{height:auto!important;min-width:0}
+#ContentColumn .BoxContent .TableContent{width:100%;table-layout:auto;overflow-wrap:anywhere}
+@media(max-width:1100px){#ContentRow{grid-template-columns:180px minmax(0,1fr)}#ThemeboxesColumn{grid-column:1/-1}#Themeboxes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}#Themeboxes .rf-panel{margin:0 0 12px}}
+@media(max-width:700px){#ContentRow{display:flex}#Themeboxes{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.rf-panel-body{padding:14px 8px}#Themeboxes .rf-panel h2{font-size:13px;letter-spacing:.4px}.rf-portrait{width:58px;height:62px}.rf-portrait img{max-width:54px}.rf-panel-button{font-size:10px}#Themeboxes .rf-shop-art .rf-button{font-size:10px}#ContentColumn .SmallBox .Message{padding:10px}.rf-shop-art{min-height:175px}}
+#ContentColumn .SmallBox .MessageContainer{height:auto!important;min-height:0!important}
+.rf-emblem .svg-inline--fa{width:32px!important;height:32px!important;font-size:32px!important}
+#ContentColumn .BoxContent .DownloadLink{white-space:nowrap}

@@ -265,8 +265,8 @@ function getTotalPlayersOnline()
         }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911-fix2">
-    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911-fix2"></script>
+    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911-fix4">
+    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911-fix4"></script>
     <?= template_place_holder('head_end'); ?>
 </head>
 <body onBeforeUnLoad="SaveMenu();" onUnload="SaveMenu();" style="background-image:url(<?= $template_path ?><?= getImageMenuRandom('bgs') ?>);
@@ -747,27 +747,6 @@ function getTotalPlayersOnline()
                 $bossaddons = $bossquery["lookaddons"];
                 $bossmount = $bossquery["lookmount"];
                 ?>
-                <div id="RightArtwork"><h2>BOOSTED DO DIA</h2>
-                    <img id="Creature"
-                         src="<?= $config['outfit_images_url'] ?>?id=<?= $creaturetype; ?>&addons=<?= $creatureaddons; ?>&head=<?= $creaturehead; ?>&body=<?= $creaturebody; ?>&legs=<?= $creaturelegs; ?>&feet=<?= $creaturefeet; ?>&mount=<?= $creaturemount; ?>"
-                         alt="Creature of the Day"
-                         title="Today's boosted creature: <?= ucwords(strtolower(trim($creaturename))); ?>">
-
-                    <?php if ($bosstypeEx != 0): ?>
-                        <img id="Boss" src="<?= $config['item_images_url'] ?><?= $bosstypeEx; ?>.gif"
-                             alt="Boss of the Day"
-                             title="Today's boosted boss: <?= ucwords(strtolower(trim($bossname))); ?>">
-                    <?php else: ?>
-                        <img id="Boss"
-                             src="<?= $config['outfit_images_url'] ?>?id=<?= $bosstype; ?>&addons=<?= $bossaddons; ?>&head=<?= $bosshead; ?>&body=<?= $bossbody; ?>&legs=<?= $bosslegs; ?>&feet=<?= $bossfeet; ?>&mount=<?= $bossmount; ?>"
-                             alt="Boss of the Day"
-                             title="Today's boosted boss: <?= ucwords(strtolower(trim($bossname))); ?>">
-                    <?php endif; ?>
-
-                    <img id="PedestalAndOnline" src="<?= $template_path; ?>/images/header/pedestal.gif"
-                         alt="Monster Pedestal and Players Online Box"/>
-                </div>
-
                 <div id="Themeboxes">
                     <?php
                     $twig_loader->prependPath(__DIR__ . '/boxes/templates');

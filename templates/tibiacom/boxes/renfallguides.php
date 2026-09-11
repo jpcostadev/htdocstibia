@@ -1,0 +1,2 @@
+<?php defined('MYAAC') or die('Direct access not allowed!'); ?>
+<section class="rf-panel"><h2>BIBLIOTECA RENFALL</h2><div class="rf-panel-body"><div class="rf-emblem rf-book-icon" aria-hidden="true"><i class="fas fa-book-open"></i></div><p>Conheça o servidor.<br>Consulte criaturas e magias.</p><a class="rf-panel-button" href="<?= getLink('serverinfo') ?>">EXPLORAR BIBLIOTECA</a><div class="rf-library-links"><a href="<?= getLink('creatures') ?>">Criaturas</a><span>·</span><a href="<?= getLink('spells') ?>">Magias</a></div></div></section>

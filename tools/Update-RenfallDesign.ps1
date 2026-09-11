@@ -1,4 +1,4 @@
-param(
+﻿param(
  [string]$WebRoot = 'C:\Users\Administrador\Desktop\RenfallzOT\TibiaOtCrystal\site',
  [string]$Php = 'C:\xampp\php\php.exe',
  [switch]$CheckOnly
@@ -9,6 +9,7 @@ $targetRoot = (Resolve-Path -LiteralPath $WebRoot).Path.TrimEnd('\')
 if (!(Test-Path -LiteralPath (Join-Path $targetRoot 'system\libs\crystal_bazaar.php'))) { throw 'Este pacote exige o bazaar Crystal instalado. Nenhum arquivo alterado.' }
 if (!(Test-Path -LiteralPath $Php)) { throw "PHP nao encontrado em $Php. Informe -Php com o caminho correto." }
 $files = @(
+ 'templates/tibiacom/boxes/discord.php', 'templates/tibiacom/boxes/renfallboosted.php', 'templates/tibiacom/boxes/renfallguides.php', 'templates/tibiacom/account.management.html.twig',
  'templates/tibiacom/index.php', 'templates/tibiacom/renfall.css', 'templates/tibiacom/renfall.js',
  'templates/tibiacom/boxes/donate.php', 'templates/tibiacom/config.ini', 'templates/tibiacom/images/header/renfall-logo.png',
  'system/pages/crystalbazaar.php', 'system/pages/renfall_bazaar_details.php', 'system/libs/renfall_bazaar_catalog.php',
