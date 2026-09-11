@@ -265,8 +265,8 @@ function getTotalPlayersOnline()
         }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911-fix4">
-    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911-fix4"></script>
+    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911-fix5">
+    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911-fix5"></script>
     <?= template_place_holder('head_end'); ?>
 </head>
 <body onBeforeUnLoad="SaveMenu();" onUnload="SaveMenu();" style="background-image:url(<?= $template_path ?><?= getImageMenuRandom('bgs') ?>);
@@ -475,7 +475,7 @@ function getTotalPlayersOnline()
                                                  class='ActiveSubmenuItemIcon'
                                                  style='background-image:url(<?= $template_path; ?>/images/menu/icon-activesubmenu.gif);'></div>
                                             <div class='SubmenuitemLabel'
-                                                 style="color: <?= $link_color; ?>;"><?= $menu['name']; ?></div>
+                                                 style="color: <?= $link_color; ?>;"><?= htmlspecialchars(['Latest News'=>'Últimas notícias','News Archive'=>'Arquivo de notícias','Event Schedule'=>'Calendário de eventos','Account Management'=>'Minha conta','Create Account'=>'Criar conta','Lost Account?'=>'Recuperar conta','Server Rules'=>'Regras do servidor','Report Bug'=>'Reportar erro','Characters'=>'Personagens','Highscores'=>'Rankings','Who Is Online?'=>'Jogadores online','Guilds'=>'Guildas','Last Kills'=>'Últimas mortes','Server Info'=>'Informações do servidor','Creatures'=>'Criaturas','Spells'=>'Magias','Houses'=>'Casas'][$menu['name']] ?? $menu['name'], ENT_QUOTES, 'UTF-8'); ?></div>
                                             <div class='RightChain'
                                                  style='background-image:url(<?= $template_path; ?>/images/general/chain.gif);'></div>
                                         </div>
