@@ -265,8 +265,8 @@ function getTotalPlayersOnline()
         }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911">
-    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911"></script>
+    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911-fix2">
+    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911-fix2"></script>
     <?= template_place_holder('head_end'); ?>
 </head>
 <body onBeforeUnLoad="SaveMenu();" onUnload="SaveMenu();" style="background-image:url(<?= $template_path ?><?= getImageMenuRandom('bgs') ?>);
