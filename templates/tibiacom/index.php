@@ -439,7 +439,7 @@ function getTotalPlayersOnline()
                         MENU_CATEGORY_ACCOUNT => [$rfMenu('Criar Conta', 'account/create'), $rfMenu('Perdeu a Conta?', 'account/lost')],
                         MENU_CATEGORY_LIBRARY => [$rfMenu('Info do Servidor', 'serverinfo'), $rfMenu('VIP', 'vip')],
                         MENU_CATEGORY_COMMUNITY => [$rfMenu('Personagens', 'characters'), $rfMenu('Rankings', 'highscores'), $rfMenu('Estatísticas de Kills', 'lastkills'), $rfMenu('Jogadores Online', 'online'), $rfMenu('Guildas', 'guilds'), $rfMenu('Casas', 'houses'), $rfMenu('Enquetes', 'polls'), $rfMenu('Banimentos', 'bans')],
-                        MENU_CATEGORY_FORUM => [$rfMenu('Fórum', 'forum'), $rfMenu('Comandos', 'commands')],
+                        MENU_CATEGORY_FORUM => [$rfMenu('Comandos', 'commands')],
                         MENU_CATEGORY_SHOP => [$rfMenu('Equipe', 'team'), $rfMenu('Documentos e Regras', 'rules')],
                         MENU_CATEGORY_CHARBAAZAR => [$rfMenu('Leilões Atuais', 'currentcharactertrades'), $rfMenu('Histórico de Leilões', 'pastcharactertrades')],
                     ];

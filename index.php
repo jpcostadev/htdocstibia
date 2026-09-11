@@ -21,9 +21,7 @@ global $db, $twig, $template_path, $account_logged, $logged, $template_name, $st
  *
  * @package   MyAAC
  * @author    Slawkens <slawkens@gmail.com>
- * @author    OpenTibiaBR
  * @copyright 2023 MyAAC
- * @link      https://github.com/opentibiabr/myaac
  */
 
 require_once 'common.php';
@@ -130,6 +128,7 @@ if (empty($uri) || isset($_REQUEST['template'])) {
             '/^news\/archive\/[0-9]+\/?$/' => array('subtopic' => 'newsarchive', 'id' => '$2'),
             '/^polls\/[0-9]+\/?$/' => array('subtopic' => 'polls', 'id' => '$1'),
             '/^spells\/[A-Za-z0-9-_%]+\/[A-Za-z0-9-_]+\/?$/' => array('subtopic' => 'spells', 'vocation' => '$1', 'order' => '$2'),
+            '/^worlds\/[A-Za-z0-9-_%+\']+$/' => array('subtopic' => 'worlds', 'world' => '$1'),
             '/^houses\/view\/?$/' => array('subtopic' => 'houses', 'page' => 'view')
         );
 
@@ -185,13 +184,12 @@ require_once SYSTEM . 'hooks.php';
 $hooks = new Hooks();
 $hooks->load();
 require_once SYSTEM . 'template.php';
+require SYSTEM . 'migrate.php';
 require_once SYSTEM . 'login.php';
 require_once SYSTEM . 'status.php';
 
 $twig->addGlobal('config', $config);
 $twig->addGlobal('status', $status);
-
-require SYSTEM . 'migrate.php';
 
 $hooks->trigger(HOOK_STARTUP);
 
@@ -286,7 +284,8 @@ if ($load_it) {
     }
 
     $success = false;
-    $tmp_content = getCustomPage($page, $success);
+    // A página de comandos do Renfall é mantida em código para acompanhar o servidor.
+    $tmp_content = $page === 'commands' ? '' : getCustomPage($page, $success);
     if ($success) {
         $content .= $tmp_content;
         if (hasFlag(FLAG_CONTENT_PAGES) || superAdmin()) {

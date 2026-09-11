@@ -16,6 +16,7 @@ if (!(Test-Path -LiteralPath (Join-Path $sourceRoot 'admin\template\template.php
  if ($LASTEXITCODE -ne 0) { throw 'Nao foi possivel adicionar a pasta admin ao sparse checkout.' }
 }
 $files = @(
+ 'index.php',
  'system/templates/serverinfo.html.twig',
  'system/pages/serverinfo.php',
  'system/pages/vip.php', 'system/templates/vip.html.twig',
@@ -26,7 +27,7 @@ $files = @(
  'admin/pages/modules/templates/lastlogin.html.twig', 'admin/pages/modules/templates/most_donates.html.twig',
  'system/functions.php',
  'templates/tibiacom/boxes/discord.php', 'templates/tibiacom/boxes/renfallboosted.php', 'templates/tibiacom/boxes/renfallguides.php', 'templates/tibiacom/account.management.html.twig', 'templates/tibiacom/account.login.html.twig',
- 'templates/tibiacom/index.php', 'templates/tibiacom/config.php', 'templates/tibiacom/renfall.css', 'templates/tibiacom/renfall.js',
+ 'templates/tibiacom/index.php', 'templates/tibiacom/config.php', 'templates/tibiacom/renfall.css', 'templates/tibiacom/renfall.js', 'templates/tibiacom/pages/commands.php',
  'templates/tibiacom/boxes/donate.php', 'templates/tibiacom/config.ini', 'templates/tibiacom/images/header/renfall-logo.png',
  'system/pages/crystalbazaar.php', 'system/pages/renfall_bazaar_details.php', 'system/libs/renfall_bazaar_catalog.php',
  'system/pages/currentcharactertrades.php', 'system/pages/pastcharactertrades.php', 'system/pages/owncharactertrades.php', 'system/pages/createcharacterauction.php'
