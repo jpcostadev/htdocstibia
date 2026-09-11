@@ -13,7 +13,7 @@ $files = @(
  'system/pages/serverinfo.php',
  'system/functions.php',
  'templates/tibiacom/boxes/discord.php', 'templates/tibiacom/boxes/renfallboosted.php', 'templates/tibiacom/boxes/renfallguides.php', 'templates/tibiacom/account.management.html.twig', 'templates/tibiacom/account.login.html.twig',
- 'templates/tibiacom/index.php', 'templates/tibiacom/renfall.css', 'templates/tibiacom/renfall.js',
+ 'templates/tibiacom/index.php', 'templates/tibiacom/config.php', 'templates/tibiacom/renfall.css', 'templates/tibiacom/renfall.js',
  'templates/tibiacom/boxes/donate.php', 'templates/tibiacom/config.ini', 'templates/tibiacom/images/header/renfall-logo.png',
  'system/pages/crystalbazaar.php', 'system/pages/renfall_bazaar_details.php', 'system/libs/renfall_bazaar_catalog.php',
  'system/pages/currentcharactertrades.php', 'system/pages/pastcharactertrades.php', 'system/pages/owncharactertrades.php', 'system/pages/createcharacterauction.php'

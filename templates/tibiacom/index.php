@@ -433,10 +433,21 @@ function getTotalPlayersOnline()
                          style='background-image:url(<?= $template_path; ?>/images/general/box-top.gif);'></div>
 
                     <?php
-                    $menus = get_template_menus();
+                    $rfMenu = static function (string $name, string $link): array {
+                        return ['name' => $name, 'link' => $link, 'link_full' => getLink($link), 'blank' => false, 'color' => ''];
+                    };
+                    $menus = [
+                        MENU_CATEGORY_NEWS => [$rfMenu('Últimas Notícias', 'news'), $rfMenu('Changelog', 'changelog'), $rfMenu('Calendário de Eventos', 'eventcalendar')],
+                        MENU_CATEGORY_ACCOUNT => [$rfMenu('Criar Conta', 'account/create'), $rfMenu('Perdeu a Conta?', 'account/lost')],
+                        MENU_CATEGORY_LIBRARY => [$rfMenu('Info do Servidor', 'serverinfo'), $rfMenu('VIP & Loyalty', 'donate')],
+                        MENU_CATEGORY_COMMUNITY => [$rfMenu('Personagens', 'characters'), $rfMenu('Rankings', 'highscores'), $rfMenu('Estatísticas de Kills', 'lastkills'), $rfMenu('Jogadores Online', 'online'), $rfMenu('Guildas', 'guilds'), $rfMenu('Casas', 'houses'), $rfMenu('Enquetes', 'polls'), $rfMenu('Banimentos', 'bans')],
+                        MENU_CATEGORY_FORUM => [$rfMenu('Fórum', 'forum'), $rfMenu('Comandos', 'commands')],
+                        MENU_CATEGORY_SHOP => [$rfMenu('Equipe', 'team'), $rfMenu('Documentos e Regras', 'rules')],
+                        MENU_CATEGORY_CHARBAAZAR => [$rfMenu('Leilões Atuais', 'currentcharactertrades'), $rfMenu('Histórico de Leilões', 'pastcharactertrades')],
+                    ];
 
                     foreach ($config['menu_categories'] as $id => $cat) {
-                        if (!isset($menus[$id]) || ($id == MENU_CATEGORY_SHOP && !$config['gifts_system'])) {
+                        if (!isset($menus[$id])) {
                             continue;
                         }
                         ?>
@@ -458,7 +469,7 @@ function getTotalPlayersOnline()
                                         <div id='<?= $cat['id']; ?>_Icon' class='Icon'
                                              style='background-image:url(<?= $template_path ?><?= getImageMenuRandom($cat['id']) ?>);'></div>
                                         <div id='<?= $cat['id']; ?>_Label' class='Label'
-                                             style='background:none;'><?= htmlspecialchars(['news'=>'Notícias','account'=>'Conta','community'=>'Comunidade','forum'=>'Fórum','library'=>'Biblioteca','shops'=>'Loja','charactertrade'=>'Bazaar de chars'][$cat['id']] ?? ucfirst($cat['id'])) ?></div>
+                                             style='background:none;'><?= htmlspecialchars(['news'=>'Notícias','account'=>'Conta','library'=>'Biblioteca','community'=>'Comunidade','custom'=>'Custom','support'=>'Suporte','charactertrade'=>'Bazaar de chars'][$cat['id']] ?? ucfirst($cat['id'])) ?></div>
                                         <div id='<?= $cat['id']; ?>_Extend' class='Extend'
                                              style='background-image:url(<?= $template_path; ?>/images/general/plus.gif);'></div>
                                     </div>
