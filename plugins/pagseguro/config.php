@@ -26,6 +26,7 @@ $config['pagSeguro'] = [
     'doubleCoinsStart'  => 300, // if doubleCoins is activated, what is min value to activate double coins
     'donationType'      => 'coins_transferable', // what should be added to player account? coins/coins_transferable
     'donates'           => [ // value = value in reais / coins = amount of coins / extra = bonus
+        '2'    => ['id' => '2',    'value'   => 2,    'coins' => 100,   'extra' => 0], // InfinitePay test package
         '10'   => ['id' => '10',   'value'   => 10,   'coins' => 100,   'extra' => 0],
         '20'   => ['id' => '20',   'value'   => 20,   'coins' => 200,   'extra' => 0],
         '30'   => ['id' => '30',   'value'   => 30,   'coins' => 300,   'extra' => 30],
