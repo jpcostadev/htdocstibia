@@ -6,8 +6,22 @@ defined('MYAAC') or die('Direct access not allowed!');
 //templates\tibiacom\config.ini
 if (isset($config['boxes']))
     $config['boxes'] = explode(",", $config['boxes']);
+
+function getTotalPlayersOnline()
+{
+  global $status;
+  $servers = 0;
+  $players = 0;
+  foreach ($status as $item) {
+    if ($item['online'] ?? false) {
+      $servers++;
+      $players += (int)($item['players'] ?? 0);
+    }
+  }
+  return $servers == 0 ? 'All Worlds Offline' : ($players > 0 ? "$players Players Online" : "$servers Worlds Online");
+}
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <?= template_place_holder('head_start'); ?>
     <link rel="icon" type="image/x-icon" href="<?= BASE_URL; ?>images/favicon.ico"/>
@@ -125,9 +139,11 @@ if (isset($config['boxes']))
 
         // load the menu and set the active submenu item by using the variable 'activeSubmenuItem'
         function LoadMenu() {
-            document.getElementById("submenu_" + activeSubmenuItem).style.color = "white";
-            document.getElementById("ActiveSubmenuItemIcon_" + activeSubmenuItem).style.visibility = "visible";
-            menus = localStorage.getItem('menus');
+            var activeItem = document.getElementById('submenu_' + activeSubmenuItem);
+            if (activeItem) activeItem.style.color = 'white';
+            var activeIcon = document.getElementById('ActiveSubmenuItemIcon_' + activeSubmenuItem);
+            if (activeIcon) activeIcon.style.visibility = 'visible';
+            try { menus = localStorage.getItem('menus') || ''; } catch (e) { menus = ''; }
             if (menus.lastIndexOf("&") === -1) {
                 menus = "news=1&account=0&community=0&library=0&forum=0<?php if ($config['gifts_system']) echo '&shops=0'; ?>&charactertrade=0&";
             }
@@ -156,6 +172,7 @@ if (isset($config['boxes']))
         // hide or show the corresponding submenus
         function InitializeMenu() {
             for (menuItemName in menu[0]) {
+                if (!document.getElementById(menuItemName + "_Submenu")) continue;
                 if (menu[0][menuItemName] == "0") {
                     document.getElementById(menuItemName + "_Submenu").style.visibility = "hidden";
                     document.getElementById(menuItemName + "_Submenu").style.display = "none";
@@ -180,7 +197,7 @@ if (isset($config['boxes']))
                 temp = temp + stringSlices;
             }
 
-            localStorage.setItem('menus', temp);
+            try { localStorage.setItem('menus', temp); } catch (e) {}
         }
 
         // onClick open or close submenus
@@ -247,6 +264,9 @@ if (isset($config['boxes']))
             }
         }
     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911">
+    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911"></script>
     <?= template_place_holder('head_end'); ?>
 </head>
 <body onBeforeUnLoad="SaveMenu();" onUnload="SaveMenu();" style="background-image:url(<?= $template_path ?><?= getImageMenuRandom('bgs') ?>);
@@ -311,10 +331,22 @@ if (isset($config['boxes']))
     </script>
 <?php } ?>
 <div id="top"></div>
+<header class="rf-masthead">
+  <a href="<?= getLink('news') ?>" aria-label="Renfall, início"><img src="<?= $template_path ?>/images/header/renfall-logo.png" alt="Renfall" width="250" height="167"></a>
+  <div class="rf-masthead-copy"><span>SEU PRÓXIMO CAPÍTULO COMEÇA AQUI</span><p>Um mundo de aventuras. Uma história sua.</p></div>
+  <a class="rf-button" href="<?= getLink('downloadclient') ?>">Jogar agora <span aria-hidden="true">↗</span></a>
+</header>
+<nav class="rf-topnav" aria-label="Acesso rápido">
+  <a href="<?= getLink('news') ?>">Notícias</a><a href="<?= getLink('account/manage') ?>"><?= $logged ? 'Minha conta' : 'Entrar' ?></a>
+  <a href="<?= getLink('currentcharactertrades') ?>">Bazaar de personagens</a><a href="<?= getLink('highscores') ?>">Ranking</a>
+  <a href="https://discord.gg/6XSHjeJG2E" target="_blank" rel="noopener">Discord ↗</a><a class="rf-nav-coins" href="<?= getLink('donate') ?>">Comprar coins</a>
+</nav>
 <div id="ArtworkHelper">
     <div id="Bodycontainer">
         <div id="ContentRow">
             <div id="MenuColumn">
+<section class="rf-account"><h2><?= $logged ? 'SUA CONTA' : 'BEM-VINDO AO RENFALL' ?></h2><a class="rf-button" href="<?= getLink('account/manage') ?>"><?= $logged ? 'Minha conta' : 'Entrar na conta' ?></a><a class="rf-account-secondary" href="<?= getLink($logged ? 'account/logout' : 'account/create') ?>"><?= $logged ? 'Sair' : 'Criar minha conta' ?></a></section>
+<a class="rf-download" href="<?= getLink('downloadclient') ?>">↓ Baixar cliente</a>
                 <div id="LeftArtwork">
                     <img id="TibiaLogoArtworkTop"
                          src="<?= $template_path; ?>/images/header/<?= $config['logo_image']; ?>"
@@ -403,7 +435,7 @@ if (isset($config['boxes']))
                         }
                         ?>
                         <div id='<?= $cat['id']; ?>' class='menuitem'>
-                            <span onClick="MenuItemAction('<?= $cat['id']; ?>')">
+                            <span role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();MenuItemAction('<?= $cat['id']; ?>');}" onClick="MenuItemAction('<?= $cat['id']; ?>')">
                                 <div class='MenuButton'
                                      style='background-image:url(<?= $template_path ?>/images/menu/button-background.gif);'>
                                     <div onMouseOver='MouseOverMenuItem(this);' onMouseOut='MouseOutMenuItem(this);'><div
@@ -420,7 +452,7 @@ if (isset($config['boxes']))
                                         <div id='<?= $cat['id']; ?>_Icon' class='Icon'
                                              style='background-image:url(<?= $template_path ?><?= getImageMenuRandom($cat['id']) ?>);'></div>
                                         <div id='<?= $cat['id']; ?>_Label' class='Label'
-                                             style='background-image:url(<?= $template_path; ?>/images/menu/label-<?= $cat['id']; ?>.gif);'></div>
+                                             style='background:none;'><?= htmlspecialchars(['news'=>'Notícias','account'=>'Conta','community'=>'Comunidade','forum'=>'Fórum','library'=>'Biblioteca','shops'=>'Loja','charactertrade'=>'Bazaar de chars'][$cat['id']] ?? ucfirst($cat['id'])) ?></div>
                                         <div id='<?= $cat['id']; ?>_Extend' class='Extend'
                                              style='background-image:url(<?= $template_path; ?>/images/general/plus.gif);'></div>
                                     </div>
@@ -530,8 +562,8 @@ if (isset($config['boxes']))
                                         <img class="InfoBarBigLogo" src="<?= $template_path; ?>/images/global/header/icon-players-online.png">
                                         <span class="InfoBarNumbers">
                                             <span class="InfoBarSmallElement">
-                                                <a class="InfoBarLinks" href="?online">
-                                                    <?= $status['online'] ? $status['players'] . ' Players Online' : 'Server Offline' ?>
+                                                <a class="InfoBarLinks" href="?worlds">
+                                                    <?= getTotalPlayersOnline() ?>
                                                 </a>
                                             </span>
                                         </span>
@@ -648,6 +680,7 @@ if (isset($config['boxes']))
 
                     <div id="ContentHelper">
                         <?= tickers(); ?>
+<?php if(PAGE==='news'): ?><div class="rf-highlights"><a href="<?= getLink('currentcharactertrades') ?>"><span>BAZAAR</span><strong>Seu próximo personagem</strong><small>Explore os leilões →</small></a><a href="<?= getLink('account/create') ?>"><span>SUA JORNADA</span><strong>Comece no Renfall</strong><small>Crie sua conta →</small></a></div><?php endif ?>
                         <div id="<?= PAGE; ?>" class="Box">
                             <div class="Corner-tl"
                                  style="background-image:url(<?= $template_path; ?>/images/content/corner-tl.gif);"></div>
@@ -662,7 +695,7 @@ if (isset($config['boxes']))
                             if (!file_exists($headline))
                                 $headline = $template_path . '/headline.php?t=' . ucfirst($title);
                             ?>
-                            <img class="Title" src="<?= $headline; ?>" alt="Contentbox headline"/>
+                            <h1 class="rf-page-title"><?= htmlspecialchars(['news'=>'Notícias do Renfall','currentcharactertrades'=>'Bazaar de Personagens','downloadclient'=>'Download do cliente'][PAGE] ?? $title, ENT_QUOTES, 'UTF-8') ?></h1>
                             <div class="Border_2">
                                 <div class="Border_3">
                                     <?php $hooks->trigger(HOOK_TIBIACOM_BORDER_3); ?>
@@ -714,7 +747,7 @@ if (isset($config['boxes']))
                 $bossaddons = $bossquery["lookaddons"];
                 $bossmount = $bossquery["lookmount"];
                 ?>
-                <div id="RightArtwork">
+                <div id="RightArtwork"><h2>BOOSTED DO DIA</h2>
                     <img id="Creature"
                          src="<?= $config['outfit_images_url'] ?>?id=<?= $creaturetype; ?>&addons=<?= $creatureaddons; ?>&head=<?= $creaturehead; ?>&body=<?= $creaturebody; ?>&legs=<?= $creaturelegs; ?>&feet=<?= $creaturefeet; ?>&mount=<?= $creaturemount; ?>"
                          alt="Creature of the Day"
