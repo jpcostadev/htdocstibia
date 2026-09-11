@@ -265,8 +265,8 @@ function getTotalPlayersOnline()
         }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911-fix10">
-    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911-fix10"></script>
+    <link rel="stylesheet" href="<?= $template_path; ?>/renfall.css?v=20260911-fix11">
+    <script defer src="<?= $template_path; ?>/renfall.js?v=20260911-fix11"></script>
     <?= template_place_holder('head_end'); ?>
 </head>
 <body onBeforeUnLoad="SaveMenu();" onUnload="SaveMenu();" style="background-image:url(<?= $template_path ?><?= getImageMenuRandom('bgs') ?>);
@@ -333,8 +333,6 @@ function getTotalPlayersOnline()
 <div id="top"></div>
 <header class="rf-masthead">
   <a href="<?= getLink('news') ?>" aria-label="Renfall, início"><img src="<?= $template_path ?>/images/header/renfall-logo.png" alt="Renfall" width="250" height="167"></a>
-  <div class="rf-masthead-copy"><span>SEU PRÓXIMO CAPÍTULO COMEÇA AQUI</span><p>Um mundo de aventuras. Uma história sua.</p></div>
-  <a class="rf-button" href="<?= getLink('downloadclient') ?>">Jogar agora <span aria-hidden="true">↗</span></a>
 </header>
 <div class="rf-mobilebar">
   <button type="button" aria-label="Abrir menu" onclick="document.body.classList.toggle('rf-mobile-menu-open')">☰</button>
@@ -439,7 +437,7 @@ function getTotalPlayersOnline()
                     $menus = [
                         MENU_CATEGORY_NEWS => [$rfMenu('Últimas Notícias', 'news'), $rfMenu('Changelog', 'changelog'), $rfMenu('Calendário de Eventos', 'eventcalendar')],
                         MENU_CATEGORY_ACCOUNT => [$rfMenu('Criar Conta', 'account/create'), $rfMenu('Perdeu a Conta?', 'account/lost')],
-                        MENU_CATEGORY_LIBRARY => [$rfMenu('Info do Servidor', 'serverinfo'), $rfMenu('VIP & Loyalty', 'donate')],
+                        MENU_CATEGORY_LIBRARY => [$rfMenu('Info do Servidor', 'serverinfo'), $rfMenu('VIP', 'vip')],
                         MENU_CATEGORY_COMMUNITY => [$rfMenu('Personagens', 'characters'), $rfMenu('Rankings', 'highscores'), $rfMenu('Estatísticas de Kills', 'lastkills'), $rfMenu('Jogadores Online', 'online'), $rfMenu('Guildas', 'guilds'), $rfMenu('Casas', 'houses'), $rfMenu('Enquetes', 'polls'), $rfMenu('Banimentos', 'bans')],
                         MENU_CATEGORY_FORUM => [$rfMenu('Fórum', 'forum'), $rfMenu('Comandos', 'commands')],
                         MENU_CATEGORY_SHOP => [$rfMenu('Equipe', 'team'), $rfMenu('Documentos e Regras', 'rules')],

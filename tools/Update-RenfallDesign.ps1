@@ -11,6 +11,7 @@ if (!(Test-Path -LiteralPath $Php)) { throw "PHP nao encontrado em $Php. Informe
 $files = @(
  'system/templates/serverinfo.html.twig',
  'system/pages/serverinfo.php',
+ 'system/pages/vip.php', 'system/templates/vip.html.twig',
  'system/functions.php',
  'templates/tibiacom/boxes/discord.php', 'templates/tibiacom/boxes/renfallboosted.php', 'templates/tibiacom/boxes/renfallguides.php', 'templates/tibiacom/account.management.html.twig', 'templates/tibiacom/account.login.html.twig',
  'templates/tibiacom/index.php', 'templates/tibiacom/config.php', 'templates/tibiacom/renfall.css', 'templates/tibiacom/renfall.js',
