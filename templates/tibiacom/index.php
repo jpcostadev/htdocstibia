@@ -695,7 +695,6 @@ function getTotalPlayersOnline()
 
                     <div id="ContentHelper">
                         <?= tickers(); ?>
-<?php if(PAGE==='news'): ?><div class="rf-highlights"><a href="<?= getLink('currentcharactertrades') ?>"><span>BAZAAR</span><strong>Seu próximo personagem</strong><small>Explore os leilões →</small></a><a href="<?= getLink('account/create') ?>"><span>SUA JORNADA</span><strong>Comece no Renfall</strong><small>Crie sua conta →</small></a></div><?php endif ?>
                         <div id="<?= PAGE; ?>" class="Box">
                             <div class="Corner-tl"
                                  style="background-image:url(<?= $template_path; ?>/images/content/corner-tl.gif);"></div>
